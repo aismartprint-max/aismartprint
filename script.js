@@ -128,10 +128,36 @@ function choose(name) {
   }
 
   product.value = name;
+const continueOrderBtn =
+  document.getElementById("continueOrderBtn");
 
-  calculateTotal();
-  updateUPIPayment();
+const paymentSection =
+  document.getElementById("paymentSection");
 
+if (continueOrderBtn && paymentSection) {
+
+  continueOrderBtn.addEventListener("click", function () {
+
+    calc();
+    updateUPIPayment();
+
+    paymentSection.style.display = "block";
+
+    continueOrderBtn.style.display = "none";
+
+    paymentSection.scrollIntoView({
+      behavior: "smooth",
+      block: "start"
+    });
+
+  });
+}
+
+calc();
+updateUPIPayment();
+
+});
+   
   document
     .getElementById("order")
     ?.scrollIntoView({
