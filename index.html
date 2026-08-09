@@ -148,38 +148,60 @@
       <button type="submit" class="btn primary">
         Get Price on WhatsApp
       </button>
-<div class="order-next-steps">
+<div class="payment-box">
 
-    <h3>After placing your order</h3>
+    <div class="pill">ORDER • PAYMENT</div>
+
+    <h3>Complete Your Order</h3>
 
     <p>
-        1. Send your design file on WhatsApp.
-        <br>
-        2. Complete UPI payment.
-        <br>
-        3. Send the payment screenshot on WhatsApp.
+        After submitting your order, send your design on WhatsApp
+        and complete the UPI payment.
     </p>
 
-    <div class="next-buttons">
+    <div class="payment-price">
+        Estimated Total:
+        <strong>₹<span id="paymentAmount">150</span></strong>
+    </div>
+
+    <div class="upi-details">
+
+        <div>
+            <span>UPI ID</span>
+            <strong>nakshatradtp4@ybl</strong>
+        </div>
+
+        <button
+            type="button"
+            class="btn ghost"
+            onclick="copyUPI()">
+            Copy UPI ID
+        </button>
+
+    </div>
+
+    <div class="payment-actions">
 
         <a
+            id="upiPayButton"
             class="btn primary"
-            href="https://wa.me/919177361421?text=Hello%20AISmartPrint,%20I%20am%20sending%20my%20design%20for%20my%20printing%20order."
-            target="_blank">
-            📎 Upload Design on WhatsApp
+            href="upi://pay?pa=nakshatradtp4@ybl&pn=AISmartPrint&am=150&cu=INR">
+            💳 Pay with UPI
         </a>
 
         <a
             class="btn ghost"
-            href="upi://pay?pa=nakshatradtp4@ybl&pn=AISmartPrint&cu=INR">
-            💳 Pay with UPI
+            href="https://wa.me/919177361421?text=Hello%20AISmartPrint,%20I%20am%20sending%20my%20design%20for%20my%20printing%20order."
+            target="_blank">
+            📎 Upload Design
         </a>
 
     </div>
 
-    <p class="payment-note">
-        After payment, please send the payment screenshot on WhatsApp.
-    </p>
+    <div class="payment-note">
+        <strong>After payment:</strong>
+        Please send the payment screenshot on WhatsApp.
+    </div>
 
 </div>
     </form>
