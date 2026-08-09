@@ -19,6 +19,13 @@ function calc(){
 function choose(name){document.getElementById('product').value=name;document.getElementById('custom').scrollIntoView();calc()}
 function fileName(){const f=document.getElementById('file').files[0];document.getElementById('fileName').textContent=f?f.name:'Choose JPG, PNG or PDF'}
 function order(){
+ function copyUPI() {
+    const upi = "nakshatradtp4@ybl";
+
+    navigator.clipboard.writeText(upi).then(function () {
+        alert("UPI ID copied: " + upi);
+    });
+}
  calc();
  const p=document.getElementById('product').value,q=document.getElementById('qty').value,t=document.getElementById('printType').value,total=document.getElementById('total').textContent;
  const msg=`Hello AISmartPrint, I want to place an order.%0A%0AProduct: ${encodeURIComponent(p)}%0AQuantity: ${q}%0APrint: ${encodeURIComponent(t)}%0AEstimated Price: ₹${total}%0A%0AI will share/upload my design and complete UPI payment.`;
