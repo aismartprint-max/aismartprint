@@ -1,77 +1,182 @@
-const rates={
-"Visiting Cards":{Colour:1.5,"Black & White":1},
-"Wedding Cards":{Colour:8,"Black & White":5},
-"Photo Printing":{Colour:8,"Black & White":3},
-"Stickers & Labels":{Colour:4,"Black & White":3},
-"Flyers & Brochures":{Colour:5,"Black & White":3},
-"Posters & Banners":{Colour:20,"Black & White":12},
-"A4 Colour Print":{Colour:5,"Black & White":2}
+const rates = {
+  "Visiting Cards": { Colour: 1.5, "Black & White": 1 },
+  "Wedding Cards": { Colour: 8, "Black & White": 5 },
+  "Photo Printing": { Colour: 8, "Black & White": 3 },
+  "Stickers & Labels": { Colour: 4, "Black & White": 3 },
+  "Flyers & Brochures": { Colour: 5, "Black & White": 3 },
+  "Posters & Banners": { Colour: 20, "Black & White": 12 },
+  "A4 Colour Print": { Colour: 5, "Black & White": 2 }
 };
-function calc(){
- const p=document.getElementById('product').value,t=document.getElementById('printType').value,q=Math.max(1,+document.getElementById('qty').value||1);
- const rate=rates[p]?.[t]||5,total=Math.ceil(rate*q);
- document.getElementById('total').textContent=total.toLocaleString('en-IN');
- document.getElementById('heroPrice').textContent=total.toLocaleString('en-IN');
- document.getElementById('summaryProduct').textContent=p;
- document.getElementById('summaryQty').textContent=q;
- document.getElementById('summaryPrint').textContent=t;
-}
-function choose(name){document.getElementById('product').value=name;document.getElementById('custom').scrollIntoView();calc()}
-function fileName(){const f=document.getElementById('file').files[0];document.getElementById('fileName').textContent=f?f.name:'Choose JPG, PNG or PDF'}
-function order(){
- function copyUPI() {
-    const upi = "nakshatradtp4@ybl";
 
-    navigator.clipboard.writeText(upi).then(function () {
-        alert("UPI ID copied: " + upi);
+const UPI_ID = "nakshatradtp4@ybl";
+
+function calc() {
+  const productEl = document.getElementById("product");
+  const printTypeEl = document.getElementById("printType");
+  const qtyEl = document.getElementById("quantity");
+
+  if (!productEl || !printTypeEl || !qtyEl) return;
+
+  const product = productEl.value;
+  const printType = printTypeEl.value;
+  const qty = Number(qtyEl.value) || 0;
+
+  if (!rates[product] || !rates[product][printType]) return;
+
+  const rate = rates[product][printType];
+  const total = Math.ceil(rate * qty);
+
+  const totalEl = document.getElementById("total");
+  const heroPrice = document.getElementById("heroPrice");
+  const paymentAmount = document.getElementById("paymentAmount");
+
+  if (totalEl) {
+    totalEl.textContent = total.toLocaleString("en-IN");
+  }
+
+  if (heroPrice) {
+    heroPrice.textContent = total.toLocaleString("en-IN");
+  }
+
+  if (paymentAmount) {
+    paymentAmount.textContent = total.toLocaleString("en-IN");
+  }
+}
+
+function choose(name) {
+  const product = document.getElementById("product");
+
+  if (product) {
+    product.value = name;
+    calc();
+    document.getElementById("order")?.scrollIntoView({
+      behavior: "smooth"
     });
+  }
 }
- calc();
- const p=document.getElementById('product').value,q=document.getElementById('qty').value,t=document.getElementById('printType').value,total=document.getElementById('total').textContent;
- const msg=`Hello AISmartPrint, I want to place an order.%0A%0AProduct: ${encodeURIComponent(p)}%0AQuantity: ${q}%0APrint: ${encodeURIComponent(t)}%0AEstimated Price: ₹${total}%0A%0AI will share/upload my design and complete UPI payment.`;
- window.open('https://wa.me/919177361421?text='+msg,'_blank');
+
+function copyUPI() {
+  navigator.clipboard.writeText(UPI_ID).then(function () {
+    alert("UPI ID copied: " + UPI_ID);
+  });
 }
-calc();
-document.getElementById("orderForm").addEventListener("submit", function(e) {
-  e.preventDefault();
 
-  const name = document.getElementById("name").value;
-  const phone = document.getElementById("phone").value;
-  const product = document.getElementById("product").value;
-  const quantity = document.getElementById("quantity").value;
-  const details = document.getElementById("details").value;
+function updateUPIPayment() {
+  const product = document.getElementById("product");
+  const quantity = document.getElementById("quantity");
+  const printType = document.getElementById("printType");
+  const paymentAmount = document.getElementById("paymentAmount");
+  const upiPayButton = document.getElementById("upiPayButton");
 
-  const message =
-    "Hello AISmartPrint,%0A%0A" +
-    "New Printing Order%0A" +
-    "Name: " + encodeURIComponent(name) + "%0A" +
-    "Mobile: " + encodeURIComponent(phone) + "%0A" +
-    "Product: " + encodeURIComponent(product) + "%0A" +
-    "Quantity: " + encodeURIComponent(quantity) + "%0A" +
-    "Details: " + encodeURIComponent(details);
+  if (!product || !quantity || !printType || !paymentAmount || !upiPayButton) {
+    return;
+  }
 
-  window.open(
-    "https://wa.me/919177361421?text=" + message,
-    "_blank"
-  );
+  const p = product.value;
+  const q = Number(quantity.value) || 0;
+  const t = printType.value;
+
+  if (!rates[p] || !rates[p][t]) {
+    paymentAmount.textContent = "0";
+    return;
+  }
+
+  const amount = Math.ceil(rates[p][t] * q);
+
+  paymentAmount.textContent = amount.toLocaleString("en-IN");
+
+  const upiLink =
+    "upi://pay" +
+    "?pa=" + encodeURIComponent(UPI_ID) +
+    "&pn=" + encodeURIComponent("AISmartPrint") +
+    "&am=" + encodeURIComponent(amount) +
+    "&cu=INR";
+
+  upiPayButton.href = upiLink;
+}
+
+document.addEventListener("DOMContentLoaded", function () {
+
+  const form = document.getElementById("orderForm");
+
+  const product = document.getElementById("product");
+  const quantity = document.getElementById("quantity");
+  const printType = document.getElementById("printType");
+
+  const designFile = document.getElementById("designFile");
+  const fileName = document.getElementById("fileName");
+
+  if (product) product.addEventListener("change", function () {
+    calc();
+    updateUPIPayment();
+  });
+
+  if (quantity) quantity.addEventListener("input", function () {
+    calc();
+    updateUPIPayment();
+  });
+
+  if (printType) printType.addEventListener("change", function () {
+    calc();
+    updateUPIPayment();
+  });
+
+  if (designFile) {
+    designFile.addEventListener("change", function () {
+
+      if (designFile.files.length > 0) {
+        fileName.textContent =
+          "Selected: " + designFile.files[0].name;
+      } else {
+        fileName.textContent = "No design selected";
+      }
+
+    });
+  }
+
+  if (form) {
+    form.addEventListener("submit", function (e) {
+
+      e.preventDefault();
+
+      const name = document.getElementById("name")?.value || "";
+      const phone = document.getElementById("phone")?.value || "";
+      const productValue = document.getElementById("product")?.value || "";
+      const qty = document.getElementById("quantity")?.value || "";
+      const details = document.getElementById("details")?.value || "";
+
+      const selectedFile =
+        designFile && designFile.files.length > 0
+          ? designFile.files[0].name
+          : "No design uploaded";
+
+      const printTypeValue =
+        document.getElementById("printType")?.value || "";
+
+      const amountText =
+        document.getElementById("paymentAmount")?.textContent || "0";
+
+      const message =
+        "Hello AISmartPrint,%0A%0A" +
+        "NEW PRINTING ORDER%0A%0A" +
+        "Name: " + encodeURIComponent(name) + "%0A" +
+        "Mobile: " + encodeURIComponent(phone) + "%0A" +
+        "Product: " + encodeURIComponent(productValue) + "%0A" +
+        "Print Type: " + encodeURIComponent(printTypeValue) + "%0A" +
+        "Quantity: " + encodeURIComponent(qty) + "%0A" +
+        "Estimated Amount: ₹" + encodeURIComponent(amountText) + "%0A" +
+        "Design: " + encodeURIComponent(selectedFile) + "%0A" +
+        "Details: " + encodeURIComponent(details) + "%0A%0A" +
+        "UPI ID: " + encodeURIComponent(UPI_ID) + "%0A%0A" +
+        "I will send the design file and payment confirmation.";
+
+      window.open(
+        "https://wa.me/919177361421?text=" + message,
+        "_blank"
+      );
+    });
+  }
+
+  calc();
+  updateUPIPayment();
 });
-function updateUPIPayment(amount) {
-
-    const paymentAmount = document.getElementById("paymentAmount");
-    const upiPayButton = document.getElementById("upiPayButton");
-
-    if (!paymentAmount || !upiPayButton) return;
-
-    amount = Number(amount) || 0;
-
-    paymentAmount.textContent = amount;
-
-    const upiLink =
-        "upi://pay" +
-        "?pa=nakshatradtp4@ybl" +
-        "&pn=AISmartPrint" +
-        "&am=" + encodeURIComponent(amount) +
-        "&cu=INR";
-
-    upiPayButton.href = upiLink;
-}
