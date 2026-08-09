@@ -1,0 +1,114 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>AISmartPrint — Online Printing</title>
+<meta name="description" content="AISmartPrint online printing, design upload, custom printing and WhatsApp ordering.">
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+<header class="topbar">
+  <div class="logo">AI<span>Smart</span>Print</div>
+  <nav>
+    <a href="#home">Home</a><a href="#products">Products</a><a href="#custom">Custom Print</a>
+    <a href="#how">How It Works</a><a href="#contact">Contact</a>
+  </nav>
+  <a class="wa small" href="https://wa.me/919177361421" target="_blank">WhatsApp Order</a>
+</header>
+
+<section id="home" class="hero">
+  <div class="hero-copy">
+    <div class="pill">ONLINE PRINTING • DESIGN • DELIVERY</div>
+    <h1>Print your ideas.<br><span>We make them real.</span></h1>
+    <p>Upload your design, choose your printing options, see an estimated price and place your order with AISmartPrint.</p>
+    <div class="hero-actions">
+      <a class="btn primary" href="#custom">Upload & Get Price</a>
+      <a class="btn ghost" href="#products">Explore Products</a>
+    </div>
+    <div class="trust"><b>✓</b> Easy ordering &nbsp; <b>✓</b> WhatsApp support &nbsp; <b>✓</b> UPI payment</div>
+  </div>
+  <div class="hero-card">
+    <div class="card-top"><span>Quick Print</span><span>AI</span></div>
+    <div class="print-preview">YOUR<br><strong>DESIGN</strong><br>HERE</div>
+    <div class="price-line"><span>Estimated total</span><b>₹ <span id="heroPrice">—</span></b></div>
+  </div>
+</section>
+
+<section id="products" class="section">
+  <div class="section-head"><div><div class="eyebrow">POPULAR CATEGORIES</div><h2>What would you like to print?</h2></div></div>
+  <div class="grid">
+    <button class="product" onclick="choose('Visiting Cards')"><span>▣</span><h3>Visiting Cards</h3><p>Business & personal cards</p><strong class="from-price">From ₹100</strong></button>
+    <button class="product" onclick="choose('Wedding Cards')"><span>♡</span><h3>Wedding Cards</h3><p>Invitations & special events</p><strong class="from-price">From ₹500</strong></button>
+    <button class="product" onclick="choose('Photo Printing')"><span>▧</span><h3>Photo Printing</h3><p>Sharp, quality photo prints</p><strong class="from-price">From ₹10</strong></button>
+    <button class="product" onclick="choose('Stickers & Labels')"><span>◇</span><h3>Stickers & Labels</h3><p>Custom labels & stickers</p><strong class="from-price">From ₹100</strong></button>
+    <button class="product" onclick="choose('Flyers & Brochures')"><span>▤</span><h3>Flyers & Brochures</h3><p>Business promotion prints</p><strong class="from-price">From ₹150</strong></button>
+    <button class="product" onclick="choose('Posters & Banners')"><span>▥</span><h3>Posters & Banners</h3><p>Promotional & display prints</p><strong class="from-price">From ₹100</strong></button>
+  </div>
+</section>
+
+<section id="custom" class="section custom">
+  <div class="section-head"><div><div class="eyebrow">CUSTOM PRINT</div><h2>Upload your design & calculate price</h2><p>Rates below are editable placeholders. Replace them with your actual AISmartPrint rates.</p></div></div>
+  <div class="calculator">
+    <div class="form">
+      <label>Product
+        <select id="product" onchange="calc()">
+          <option>Visiting Cards</option><option>Wedding Cards</option><option>Photo Printing</option>
+          <option>Stickers & Labels</option><option>Flyers & Brochures</option><option>Posters & Banners</option><option>A4 Colour Print</option>
+        </select>
+      </label>
+      <label>Size
+        <select id="size" onchange="calc()">
+          <option>A4</option><option>A5</option><option>A6</option><option>Custom</option>
+        </select>
+      </label>
+      <label>Print type
+        <select id="printType" onchange="calc()"><option>Colour</option><option>Black & White</option></select>
+      </label>
+      <label>Quantity
+        <input id="qty" type="number" min="1" value="100" oninput="calc()">
+      </label>
+      <label class="upload">Design file
+        <input id="file" type="file" accept=".jpg,.jpeg,.png,.pdf" onchange="fileName()">
+        <span id="fileName">Choose JPG, PNG or PDF</span>
+      </label>
+      <button class="btn primary full" onclick="order()">Continue to Order</button>
+    </div>
+    <div class="estimate">
+      <div class="estimate-label">ESTIMATED PRICE</div>
+      <div class="big">₹<span id="total">100</span></div>
+      <div class="note">Final price may change after checking the uploaded design, paper, finishing and exact requirements.</div>
+      <div class="mini"><span>Product</span><b id="summaryProduct">Visiting Cards</b></div>
+      <div class="mini"><span>Quantity</span><b id="summaryQty">100</b></div>
+      <div class="mini"><span>Print</span><b id="summaryPrint">Colour</b></div>
+    </div>
+  </div>
+</section>
+
+<section id="how" class="section">
+  <div class="eyebrow">SIMPLE PROCESS</div><h2>Order in 4 easy steps</h2>
+  <div class="steps">
+    <div><b>01</b><h3>Choose</h3><p>Select a printing product.</p></div>
+    <div><b>02</b><h3>Upload</h3><p>Upload your JPG, PNG or PDF design.</p></div>
+    <div><b>03</b><h3>Pay</h3><p>Pay securely through UPI.</p></div>
+    <div><b>04</b><h3>Confirm</h3><p>Get your order confirmation on WhatsApp.</p></div>
+  </div>
+</section>
+
+<section class="upi">
+  <div><div class="eyebrow">PAYMENT</div><h2>UPI payment ready</h2><p>Google Pay • PhonePe • Paytm • Any UPI app</p></div>
+  <div class="qrbox"><img src="upi_qr.jpg" alt="AISmartPrint UPI payment QR"><small>Scan & Pay using any UPI App</small></div>
+</section>
+
+<footer id="contact">
+  <div class="logo">AI<span>Smart</span>Print</div>
+  <p>Printing • Designing • Custom Prints</p>
+  <p>#22-4-217, Deshaipet, Warangal, Telangana – 506006, India</p>
+  <p>Phone / WhatsApp: <a href="tel:+919177361421">9177361421</a></p>
+  <a class="wa" href="https://wa.me/919177361421" target="_blank">Chat on WhatsApp</a>
+  <div class="copy">© 2026 AISmartPrint. All rights reserved.</div>
+</footer>
+
+<script src="script.js"></script>
+</body>
+</html>
