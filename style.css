@@ -180,3 +180,147 @@
     max-width: 100%;
   }
 }
+/* =========================================
+   SIMPLE 4-STEP ORDER PROCESS
+   ========================================= */
+
+#orderForm {
+  max-width: 900px;
+  margin: 30px auto;
+  padding: 30px;
+  background: #fff;
+  border-radius: 20px;
+  box-shadow: 0 8px 30px rgba(0,0,0,.07);
+}
+
+/* Step style headings */
+#orderForm label {
+  font-weight: 600;
+  color: #172554;
+}
+
+/* All normal fields */
+#orderForm input:not([type="file"]),
+#orderForm select,
+#orderForm textarea {
+  border-radius: 10px;
+}
+
+/* -----------------------------------------
+   UPLOAD SECTION
+   ----------------------------------------- */
+
+#designFile {
+  display: block;
+  width: 100%;
+  padding: 14px;
+  margin-top: 8px;
+  background: #f8fafc;
+  border: 1px solid #dbe3ef;
+  border-radius: 10px;
+  box-sizing: border-box;
+}
+
+#fileName {
+  margin-top: 8px;
+  color: #64748b;
+  font-size: 14px;
+}
+
+
+/* -----------------------------------------
+   PAYMENT BOX — SIMPLE
+   ----------------------------------------- */
+
+.payment-box {
+  width: 100% !important;
+  max-width: 600px !important;
+  margin: 25px auto !important;
+  padding: 22px !important;
+  box-sizing: border-box;
+
+  background: #f8fafc !important;
+  color: #172554 !important;
+
+  border: 1px solid #dbe3ef;
+  border-radius: 15px;
+
+  box-shadow: none !important;
+  text-align: center;
+}
+
+.payment-box h3 {
+  color: #172554 !important;
+  font-size: 20px;
+  margin-bottom: 12px;
+}
+
+.payment-box p {
+  color: #475569 !important;
+}
+
+.payment-box strong {
+  color: #172554 !important;
+}
+
+
+/* Payment buttons */
+
+.payment-box a,
+.payment-box button {
+  background: #2563eb !important;
+  color: #fff !important;
+  border-radius: 9px;
+  padding: 11px 20px;
+  border: none;
+}
+
+
+/* -----------------------------------------
+   WHATSAPP BUTTON
+   ----------------------------------------- */
+
+#orderForm button[type="submit"] {
+  width: 100%;
+  max-width: 600px;
+  margin: 20px auto;
+
+  padding: 14px 20px;
+
+  background: #16a34a;
+  color: #fff;
+
+  border: none;
+  border-radius: 10px;
+
+  font-size: 16px;
+  font-weight: 700;
+}
+
+
+/* -----------------------------------------
+   COMPLETE ORDER SECTION
+   ----------------------------------------- */
+
+#orderForm .payment-box + * {
+  box-sizing: border-box;
+}
+
+
+/* -----------------------------------------
+   MOBILE
+   ----------------------------------------- */
+
+@media (max-width: 768px) {
+
+  #orderForm {
+    margin: 15px;
+    padding: 20px;
+    border-radius: 15px;
+  }
+
+  .payment-box {
+    padding: 18px !important;
+  }
+
+}
