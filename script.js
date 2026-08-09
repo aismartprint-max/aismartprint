@@ -25,3 +25,26 @@ function order(){
  window.open('https://wa.me/919177361421?text='+msg,'_blank');
 }
 calc();
+document.getElementById("orderForm").addEventListener("submit", function(e) {
+  e.preventDefault();
+
+  const name = document.getElementById("name").value;
+  const phone = document.getElementById("phone").value;
+  const product = document.getElementById("product").value;
+  const quantity = document.getElementById("quantity").value;
+  const details = document.getElementById("details").value;
+
+  const message =
+    "Hello AISmartPrint,%0A%0A" +
+    "New Printing Order%0A" +
+    "Name: " + encodeURIComponent(name) + "%0A" +
+    "Mobile: " + encodeURIComponent(phone) + "%0A" +
+    "Product: " + encodeURIComponent(product) + "%0A" +
+    "Quantity: " + encodeURIComponent(quantity) + "%0A" +
+    "Details: " + encodeURIComponent(details);
+
+  window.open(
+    "https://wa.me/919177361421?text=" + message,
+    "_blank"
+  );
+});
