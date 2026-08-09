@@ -1,3 +1,5 @@
+const SUPABASE_URL = "https://wrrpgmvurzyizzhrbtsp.supabase.co";
+const SUPABASE_KEY = "sb_publishable_fwhpZvh9p_gjnCV0IAYCkQ_rq-P3pLt";
 const rates = {
   "Visiting Cards": { Colour: 1.5, "Black & White": 1 },
   "Wedding Cards": { Colour: 8, "Black & White": 5 },
