@@ -6,71 +6,16 @@ const SUPABASE_KEY = "sb_publishable_fwhpZvh9p_gjnCV0IAYCkQ_rq-P3pLt";
    ========================================= */
 
 const rates = {
-  "Visiting Cards": {
-    Colour: 1.5,
-    "Black & White": 1
-  },
+  "Visiting Cards": { Multi Colour: 1.5 },
+  "Wedding Cards": { Multi Colour: 8, "Single Color": 3 },
+  "Photo Printing": { Multi Colour / Black and White: 50 },
+  "Stickers & Labels": { Colour: 4, "Black & White": 3 },
+  "Flyers & Brochures": { Colour: 5, "Black & White": 3 },
+  "Posters & Banners": { Colour: 20, "Black & White": 12 },
+  "A4 Colour Print": { Colour: 5, "Black & White": 2 },
 
-  "Business Cards": {
-    Colour: 1.5,
-    "Black & White": 1
-  },
-
-  "Wedding Cards": {
-    Colour: 8,
-    "Black & White": 5
-  },
-
-  "Photo Printing": {
-    Colour: 8,
-    "Black & White": 3
-  },
-
-  "Stickers": {
-    Colour: 4,
-    "Black & White": 3
-  },
-
-  "Stickers & Labels": {
-    Colour: 4,
-    "Black & White": 3
-  },
-
-  "Flyers": {
-    Colour: 5,
-    "Black & White": 3
-  },
-
-  "Brochures": {
-    Colour: 5,
-    "Black & White": 3
-  },
-
-  "Flyers & Brochures": {
-    Colour: 5,
-    "Black & White": 3
-  },
-
-  "Posters": {
-    Colour: 20,
-    "Black & White": 12
-  },
-
-  "Posters & Banners": {
-    Colour: 20,
-    "Black & White": 12
-  },
-
-  "A4 Colour Print": {
-    Colour: 5,
-    "Black & White": 2
-  },
-
-  /* CUSTOM PRINT */
-  "Custom Print": {
-    Colour: 100,
-    "Black & White": 100
-  }
+  /* Custom Print */
+  "Custom Print": { Colour: 100, "Black & White": 100 }
 };
 
 const UPI_ID = "nakshatradtp4@ybl";
@@ -579,29 +524,109 @@ document.addEventListener(
        CONTINUE ORDER BUTTON
        ===================================== */
 
-    if (form) {
+   if (form) {
+  form.addEventListener("submit", function (e) {
 
-      form.addEventListener(
-        "submit",
-        function (e) {
+    e.preventDefault();
 
-          e.preventDefault();
+    const name = document.getElementById("name")?.value || "";
+    const phone = document.getElementById("phone")?.value || "";
+    const productValue = document.getElementById("product")?.value || "";
+    const qty = document.getElementById("quantity")?.value || "";
+    const details = document.getElementById("details")?.value || "";
 
-          /*
-           * IMPORTANT:
-           * Continue Order should NOT directly
-           * open WhatsApp.
-           *
-           * First show Payment / Next Step.
-           */
+    const printTypeValue =
+      document.getElementById("printType")?.value || "";
 
-          calculateTotal();
-          updateUPIPayment();
-          showNextStep();
+    /* Calculate amount */
+    let amount = 0;
 
-        }
+    if (
+      rates[productValue] &&
+      rates[productValue][printTypeValue]
+    ) {
+      amount = Math.ceil(
+        rates[productValue][printTypeValue] * Number(qty || 0)
       );
     }
+
+    /* Custom Print minimum price */
+    if (productValue === "Custom Print") {
+      amount = 100 * Number(qty || 1);
+    }
+
+    /* Update payment amount */
+    const paymentAmount =
+      document.getElementById("paymentAmount");
+
+    if (paymentAmount) {
+      paymentAmount.textContent =
+        amount.toLocaleString("en-IN");
+    }
+
+    /* Update UPI payment link */
+    const upiPayButton =
+      document.getElementById("upiPayButton");
+
+    if (upiPayButton) {
+
+      const upiLink =
+        "upi://pay" +
+        "?pa=" + encodeURIComponent(UPI_ID) +
+        "&pn=" + encodeURIComponent("AISmartPrint") +
+        "&am=" + encodeURIComponent(amount) +
+        "&cu=INR";
+
+      upiPayButton.href = upiLink;
+    }
+
+    /* Save order details temporarily */
+    sessionStorage.setItem(
+      "aismart_order",
+      JSON.stringify({
+        name: name,
+        phone: phone,
+        product: productValue,
+        printType: printTypeValue,
+        quantity: qty,
+        details: details,
+        amount: amount
+      })
+    );
+
+    /* Go to payment / next step */
+    const paymentSection =
+      document.querySelector(".payment-section") ||
+      document.querySelector("#payment") ||
+      document.querySelector(".payment");
+
+    if (paymentSection) {
+
+      paymentSection.style.display = "block";
+
+      paymentSection.scrollIntoView({
+        behavior: "smooth",
+        block: "start"
+      });
+
+    } else {
+
+      /* If payment section selector is different */
+      const paymentAmountBox =
+        document.getElementById("paymentAmount");
+
+      if (paymentAmountBox) {
+
+        paymentAmountBox.scrollIntoView({
+          behavior: "smooth",
+          block: "center"
+        });
+
+      }
+    }
+
+  });
+}
 
 
     /* =====================================
