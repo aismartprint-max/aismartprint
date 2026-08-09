@@ -396,3 +396,48 @@ GET YOUR PRINTING PRICE
     opacity: 0.75;
   }
 }
+
+/* Enquiry on WhatsApp */
+.enquiry-whatsapp {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+
+  width: 100%;
+  padding: 14px 20px;
+
+  background: #16a34a;
+  color: #ffffff;
+
+  border-radius: 10px;
+  text-decoration: none;
+  font-weight: 700;
+  font-size: 16px;
+
+  transition: 0.3s ease;
+
+  animation: whatsappBlink 1.5s infinite;
+}
+
+.enquiry-whatsapp img {
+  width: 23px;
+  height: 23px;
+  display: block;
+}
+
+.enquiry-whatsapp:hover {
+  background: #128c3a;
+  transform: translateY(-2px);
+}
+
+/* Blinking effect */
+@keyframes whatsappBlink {
+  0%, 100% {
+    opacity: 1;
+  }
+
+  50% {
+    opacity: 0.65;
+  }
+}
