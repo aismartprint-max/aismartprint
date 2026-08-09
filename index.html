@@ -145,9 +145,33 @@
       <textarea id="details" rows="4"
         placeholder="Size, paper type, color, single/double side, etc."></textarea>
 
-      <button type="submit" class="btn primary">
-        Get Price on WhatsApp
-      </button>
+     <label>Upload Design</label>
+<input type="file" id="designFile" accept="image/*,.pdf">
+
+<p id="fileName">No design selected</p>
+
+<div class="payment-box">
+  <h3>Payment</h3>
+
+  <p>UPI ID: <strong>nakshatradtp4@ybl</strong></p>
+
+  <p>
+    Amount:
+    ₹<strong id="paymentAmount">0</strong>
+  </p>
+
+  <button type="button" class="btn primary" id="upiPayButton">
+    Pay with UPI
+  </button>
+
+  <button type="button" class="btn ghost" onclick="copyUPI()">
+    Copy UPI ID
+  </button>
+</div>
+
+<button type="submit" class="btn primary">
+  Send Order on WhatsApp
+</button>
 <div class="payment-box">
 
     <div class="pill">ORDER • PAYMENT</div>
