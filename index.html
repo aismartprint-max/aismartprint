@@ -95,38 +95,34 @@
   </div>
 </section>
 
-<section class="upi">
-  <div><div class="eyebrow">PAYMENT</div><h2>UPI payment ready</h2><p>Google Pay • PhonePe • Paytm • Any UPI app</p></div>
-  <div class="qrbox"><img src="upi_qr.jpg" alt="AISmartPrint UPI payment QR"><small>Scan & Pay using any UPI App</small></div>
-</section>
-
-<script src="..."></script>
-<script src="script.js"></script>
-
+<!-- Quick Order -->
 <section id="order" class="order-section">
 
-    <!-- Quick Order -->
+  <div class="container">
 
-</section>
-
-<footer id="contact">
-
-    <!-- Footer -->
-
-</footer>
-  <div class="order-box">
-    <div class="pill">QUICK ORDER</div>
+    <div class="eyebrow">QUICK ORDER</div>
 
     <h2>Get Your Printing Price</h2>
+
     <p>Fill in your requirements and send your order on WhatsApp.</p>
 
     <form id="orderForm">
 
       <label>Your Name</label>
-      <input type="text" id="name" placeholder="Enter your name" required>
+      <input
+        type="text"
+        id="name"
+        placeholder="Enter your name"
+        required
+      >
 
       <label>Mobile Number</label>
-      <input type="tel" id="phone" placeholder="Enter mobile number" required>
+      <input
+        type="tel"
+        id="phone"
+        placeholder="Enter mobile number"
+        required
+      >
 
       <label>Product</label>
       <select id="product" required>
@@ -142,135 +138,134 @@
       </select>
 
       <label>Quantity</label>
-      <input type="number" id="quantity" min="1" placeholder="Example: 100" required>
+      <input
+        type="number"
+        id="quantity"
+        min="1"
+        placeholder="Example: 100"
+        required
+      >
 
       <label>Print Details</label>
-      <textarea id="details" rows="4"
-        placeholder="Size, paper type, color, single/double side, etc."></textarea>
-<button type="submit" class="btn primary">
-  <label>Upload Design</label>
-<input
-  type="file"
-  id="file"
-  accept=".jpg,.jpeg,.png,.pdf"
-  required
->
+      <textarea
+        id="details"
+        rows="4"
+        placeholder="Size, paper type, color, single/double side, etc."
+      ></textarea>
 
-<p class="small">
-  JPG, PNG or PDF • Max recommended size 100MB
-</p>
+      <label>Upload Design</label>
+      <input
+        type="file"
+        id="design"
+        accept=".jpg,.jpeg,.png,.pdf"
+      >
 
-<div class="payment-box">
-  <h3>UPI Payment</h3>
-  <p>Pay using UPI ID: <b>nakshatradtp4@ybl</b></p>
+      <div class="payment-box">
 
-  <div>
-    Amount: ₹<span id="paymentAmount">0</span>
-  </div>
+        <div class="pill">ORDER • PAYMENT</div>
 
-  <a
-    id="upiPayButton"
-    class="btn primary"
-    href="#"
-  >
-    Pay via UPI
-  </a>
-</div>
-  Get Price on WhatsApp
-<button type="submit">Get Price on WhatsApp</button>
-     <label>Upload Design</label>
-<input type="file" id="designFile" accept="image/*,.pdf">
+        <h3>Complete Your Order</h3>
 
-<p id="fileName">No design selected</p>
+        <p>
+          After submitting your order, send your design on WhatsApp
+          and complete the UPI payment.
+        </p>
 
-<div class="payment-box">
-  <h3>Payment</h3>
-
-  <p>UPI ID: <strong>nakshatradtp4@ybl</strong></p>
-
-  <p>
-    Amount:
-    ₹<strong id="paymentAmount">0</strong>
-  </p>
-
- <a href="#" class="btn primary" id="upiPayButton">
-  Pay with UPI
-</a>
-
-  <button type="button" class="btn ghost" onclick="copyUPI()">
-    Copy UPI ID
-  </button>
-</div>
-
-<button type="submit" class="btn primary">
-  Send Order on WhatsApp
-</button>
-<div class="payment-box">
-
-    <div class="pill">ORDER • PAYMENT</div>
-
-    <h3>Complete Your Order</h3>
-
-    <p>
-        After submitting your order, send your design on WhatsApp
-        and complete the UPI payment.
-    </p>
-
-    <div class="payment-price">
-        Estimated Total:
-        <strong>₹<span id="paymentAmount">150</span></strong>
-    </div>
-
-    <div class="upi-details">
-
-        <div>
-            <span>UPI ID</span>
-            <strong>nakshatradtp4@ybl</strong>
+        <div class="payment-price">
+          Estimated Total:
+          <strong>
+            ₹<span id="paymentAmount">150</span>
+          </strong>
         </div>
 
-        <button
+        <div class="upi-details">
+
+          <div>
+            <span>UPI ID</span>
+            <strong>nakshatradtp4@ybl</strong>
+          </div>
+
+          <button
             type="button"
             class="btn ghost"
             onclick="copyUPI()">
             Copy UPI ID
-        </button>
+          </button>
 
-    </div>
+        </div>
 
-    <div class="payment-actions">
+        <div class="payment-actions">
 
-        <a
+          <a
             id="upiPayButton"
             class="btn primary"
             href="upi://pay?pa=nakshatradtp4@ybl&pn=AISmartPrint&am=150&cu=INR">
             💳 Pay with UPI
-        </a>
+          </a>
 
-        <a
+          <a
             class="btn ghost"
             href="https://wa.me/919177361421?text=Hello%20AISmartPrint,%20I%20am%20sending%20my%20design%20for%20my%20printing%20order."
             target="_blank">
             📎 Upload Design
-        </a>
+          </a>
 
-    </div>
+        </div>
 
-    <div class="payment-note">
-        <strong>After payment:</strong>
-        Please send the payment screenshot on WhatsApp.
-    </div>
+        <div class="payment-note">
+          <strong>After payment:</strong>
+          Please send the payment screenshot on WhatsApp.
+        </div>
 
-</div>
+      </div>
+
+      <button
+        type="button"
+        class="wa"
+        onclick="sendOrderWhatsApp()">
+        Send Order on WhatsApp
+      </button>
+
     </form>
+
   </div>
+
 </section>
-  <footer id="contact">
-  <div class="logo">AI<span>Smart</span>Print</div>
-  <p>Printing • Designing • Custom Prints</p>
-  <p>#22-4-217, Deshaipet, Warangal, Telangana – 506006, India</p>
-  <p>Phone / WhatsApp: <a href="tel:+919177361421">9177361421</a></p>
-  <a class="wa" href="https://wa.me/919177361421" target="_blank">Chat on WhatsApp</a>
-  <div class="copy">© 2026 Ai Smart Print. All rights reserved.</div>
+<!-- Footer -->
+<footer id="contact">
+
+  <div class="container">
+
+    <div class="logo">
+      AI<span>Smart</span>Print
+    </div>
+
+    <p>Printing • Designing • Custom Prints</p>
+
+    <p>
+      #22-4-217, Deshaipet, Warangal, Telangana – 506006, India
+    </p>
+
+    <p>
+      Phone / WhatsApp:
+      <a href="tel:+919177361421">
+        9177361421
+      </a>
+    </p>
+
+    <a
+      class="wa"
+      href="https://wa.me/919177361421"
+      target="_blank">
+      Chat on WhatsApp
+    </a>
+
+    <div class="copy">
+      © 2026 AISmartPrint. All rights reserved.
+    </div>
+
+  </div>
+
 </footer>
 </body>
 </html>
