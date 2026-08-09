@@ -234,7 +234,75 @@
   >
   <span>Enquiry on WhatsApp</span>
 </a>
+<!-- Continue Order -->
+<div class="continue-order-wrap">
+  <button
+    type="button"
+    id="continueOrderBtn"
+    class="btn primary">
+    Continue Order →
+  </button>
+</div>
 
+<!-- Payment Step -->
+<div
+  id="paymentSection"
+  style="display:none;">
+
+  <div class="pill">ORDER • PAYMENT</div>
+
+  <h3>Complete Your Order</h3>
+
+  <p>
+    Check your estimated price and complete the UPI payment.
+  </p>
+
+  <div class="payment-price">
+    Estimated Total:
+    <strong>
+      ₹<span id="paymentAmount">0</span>
+    </strong>
+  </div>
+
+  <div class="upi-details">
+
+    <div>
+      <span>UPI ID</span>
+      <strong>nakshatradtp4@ybl</strong>
+    </div>
+
+    <button
+      type="button"
+      class="btn ghost"
+      onclick="copyUPI()">
+      Copy UPI ID
+    </button>
+
+  </div>
+
+  <div class="payment-actions">
+
+    <a
+      id="upiPayButton"
+      class="btn primary"
+      href="#">
+      💳 Pay with UPI
+    </a>
+
+    <a
+      class="btn ghost"
+      href="https://wa.me/919177361421?text=Hello%20AISmartPrint,%20I%20have%20a%20customised%20design.%20Please%20check%20it%20and%20tell%20me%20the%20printing%20price."
+      target="_blank">
+      💬 Enquiry on WhatsApp
+    </a>
+
+  </div>
+
+  <p class="payment-note">
+    After payment, please send the payment screenshot on WhatsApp.
+  </p>
+
+</div>
     </form>
 <div class="send-order-wrap">
   <a
