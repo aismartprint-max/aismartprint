@@ -144,7 +144,37 @@
       <label>Print Details</label>
       <textarea id="details" rows="4"
         placeholder="Size, paper type, color, single/double side, etc."></textarea>
+<button type="submit" class="btn primary">
+  <label>Upload Design</label>
+<input
+  type="file"
+  id="file"
+  accept=".jpg,.jpeg,.png,.pdf"
+  required
+>
 
+<p class="small">
+  JPG, PNG or PDF • Max recommended size 10MB
+</p>
+
+<div class="payment-box">
+  <h3>UPI Payment</h3>
+  <p>Pay using UPI ID: <b>nakshatradtp4@ybl</b></p>
+
+  <div>
+    Amount: ₹<span id="paymentAmount">0</span>
+  </div>
+
+  <a
+    id="upiPayButton"
+    class="btn primary"
+    href="#"
+  >
+    Pay via UPI
+  </a>
+</div>
+  Get Price on WhatsApp
+</button>
      <label>Upload Design</label>
 <input type="file" id="designFile" accept="image/*,.pdf">
 
