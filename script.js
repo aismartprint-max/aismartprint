@@ -55,3 +55,23 @@ document.getElementById("orderForm").addEventListener("submit", function(e) {
     "_blank"
   );
 });
+function updateUPIPayment(amount) {
+
+    const paymentAmount = document.getElementById("paymentAmount");
+    const upiPayButton = document.getElementById("upiPayButton");
+
+    if (!paymentAmount || !upiPayButton) return;
+
+    amount = Number(amount) || 0;
+
+    paymentAmount.textContent = amount;
+
+    const upiLink =
+        "upi://pay" +
+        "?pa=nakshatradtp4@ybl" +
+        "&pn=AISmartPrint" +
+        "&am=" + encodeURIComponent(amount) +
+        "&cu=INR";
+
+    upiPayButton.href = upiLink;
+}
